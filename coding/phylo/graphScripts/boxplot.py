@@ -1,0 +1,64 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+def makeBoxplots(dataDictionary, output=None, title=None, xAxis=None, yAxis=None, randomGuessLine=None):
+    '''Given a dictionary that maps from {"Boxplot name" -> [val1, val2...]}
+    makes an appropriate set of boxplots.'''
+
+    fig = plt.figure()
+    if title != None:
+        fig.suptitle(title, fontsize=20)
+
+    if yAxis != None:
+        plt.ylabel(yAxis, fontsize=16)
+
+    if xAxis != None:
+        plt.xlabel(xAxis, fontsize=16)
+
+
+    frame = plt.gca()
+    frame.axes.get_yaxis().set_ticks([0])
+
+    if randomGuessLine != None:
+        plt.plot(range(len(dataDictionary)+2), [randomGuessLine for i in range(len(dataDictionary) + 2)], 'r--')
+
+    
+    plt.boxplot(dataDictionary.values(), notch=True, sym='+', vert=True, whis=1.5,
+                positions=None, widths=None, patch_artist=False,
+                bootstrap=5000)
+    
+    plt.xticks(range(1, len(dataDictionary) + 1), [str(x) for x in dataDictionary.keys()])
+
+    if output==None:
+        plt.show()
+    else:
+        plt.savefig(output)
+
+
+
+def getDataDictionary(inputFilename):
+    '''Given a file in the form of alternating lines specifying method name and data list,
+    returns a dictionary of {"method name" -> [val1, val2]}'''
+    myFile = open(inputFilename)
+    lines = myFile.readlines()
+    names = [lines[x].strip() for x in range(0, len(lines), 2)]
+    data = [[float(y) for y in lines[x].split()] for x in range(1, len(lines), 2)]
+    returnDict = {}
+    for i in range(len(names)):
+        returnDict[names[i]] = data[i]
+    return returnDict
+
+
+
+def main():        
+    makeBoxplots(getDataDictionary("realrand8qd.txt"),
+                 output="realrand8qd",
+                 title="Quartet Distance with 8 Species",
+                 randomGuessLine = 47,
+                 xAxis = "Algorithm",
+                 yAxis = "Quartet Distance")
+        
+
+
+if __name__ == "__main__":
+    main()

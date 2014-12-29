@@ -1,0 +1,8 @@
+To run this on the lab machine, you need to...
+
+1. Open CMakeLists.txt and uncomment the specified lines.
+
+2. run the following commands:
+
+cmake .
+export DYLD_LIBRARY_PATH=/usr/local/boost/lib:$DYLD_LIBRARY_PATH

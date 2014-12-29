@@ -1,0 +1,25 @@
+Random Phylogenetic Tree Generator
+Carleton College Phylogenetic Comps 2014
+Evan Albright, Jack Hessel, Nao Hiranuma, Cody Wang
+
+
+WHAT THIS IS:
+This program aligns sets of sequences, reconstructs phylogenetic trees from aligned
+sequences, and compares phylogenetic trees.
+
+REQUIRES:
+- Boost Graph Library
+- Files within Phylo: KEEP THIS FILE WHERE IT IS IN THE DIRECTORY STRUCTURE
+
+FEAUTRES:
+- 3 Sequence Alignment Algorithms
+- 6 Reconstruction Algorithms
+- 2 Comparison Algorithms [to run these, you need to modify main, see abstractTreeComparison.h]
+- OpenMP support: set the environment OMP_NUM_THREADS to be whatever you'd like
+
+HOW TO BUILD:
+cmake .
+make
+
+USAGE:
+Run ./phylo to see specific options.

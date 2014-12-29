@@ -1,0 +1,4 @@
+# This is how you do vectors
+alphabet=vec(A C G T)
+# This is how you might do a 2d dictionary
+similarities=2ddict((A,A,1) (C,C,1) (G,G,1) (T,T,1))

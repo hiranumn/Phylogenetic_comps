@@ -1,0 +1,42 @@
+#General
+verbosity=2
+maxNumThreads=256
+
+#MaximumLikelihood
+convergence=0.01
+uRate=1 
+nuc=vec(A T G C -)
+freq=dict((A,.2) (T,.2) (C,.2) (G,.2) (-,.2))
+
+#MCMC
+iterations=200
+phi=0.4
+
+#RandomDataGenerator
+numS=6
+maxBranchLength=10
+randSpeciesDNALength=100
+nameBase=Taxa-
+rndRate=2.5e-02
+insRate=5.0e-03
+delRate=5.0e-03
+
+#Maximum Parsimony
+
+#ClustalW
+gapReward=-1
+matchReward=2
+profileGapReward=-.2
+similarities=2ddict((A,A,1) (C,C,1) (G,G,1) (T,T,1))
+alphabet=vec(A G C T)
+
+#Muscle
+kmerSize=3
+convergenceValue=0.01
+mProfileGapReward=-0.2
+mSimilarities=2ddict((A,A,1) (C,C,1) (G,G,1) (T,T,1) (-,-,1))
+mAlphabet=vec(A G C T -)
+
+#Center Star
+csGapReward=-1
+csMatchReward=2

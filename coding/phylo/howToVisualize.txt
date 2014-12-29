@@ -1,0 +1,10 @@
+How to visualize boost graphs...
+
+http://stackoverflow.com/questions/7931164/graph-visualization-boost-graph
+
+
+Basically, you serialize the boost graph to the "dot grammar" through functions
+in write_graphviz. Write this serialization to a text file. Then, run the following
+command, and BOOM you get a tree...
+
+dot -Tpng serialization.txt > test.png

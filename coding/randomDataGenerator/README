@@ -1,0 +1,29 @@
+Random Phylogenetic Tree Generator
+Carleton College Phylogenetic Comps 2014
+Evan Albright, Jack Hessel, Nao Hiranuma, Cody Wang
+
+
+WHAT THIS IS:
+This program generates a random phylogenetic tree
+
+REQUIRES:
+- Boost Graph Library
+- Files within Phylo: KEEP THIS FILE WHERE IT IS IN THE DIRECTORY STRUCTURE
+
+HOW TO BUILD:
+cmake .
+make
+
+USAGE:
+After building, we highly reccomend using generate.sh. You can put parameters into that
+script, and the program will generate appropriate sequences.
+
+You can run it outside of the script as...
+
+./randomDataGenerator A B C D
+
+Where
+A = trialNum, any int will do, used for indexing files.
+B = number of species you want in the tree.
+C = the average number of base pairs you want in your final sequences.
+D = the mutation rate governing the tree. We reccomend vals in [0.00001, .1]

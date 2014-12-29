@@ -1,0 +1,111 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}[1.3]
+
+\setlength\parindent{0pt}
+
+\begin{document}
+\pagenumbering{gobble}
+\noindent
+{\Large\textbf{Data Analysis Plan}}\\
+
+\section*{What We Have}
+
+\begin{enumerate}
+\item
+  Sequence Aligners
+  \begin{enumerate}
+    \item Clustal-W
+    \item MUSCLE*
+  \end{enumerate}
+\item
+  Tree Builders
+  \begin{enumerate}
+    \item Maximum Parsimony Hill-climbing X
+    \item Maximum Parsimony Progresive* X
+    \item Maximum Likelihood Hill-climbing
+    \item Maximum Likelihood Progressive*
+    \item Neighbor Joining
+    \item Monte-Carlo Markov-Chain*
+  \end{enumerate}
+\item
+  Tree Comparisons
+  \begin{enumerate}
+    \item Pairwise Pathlength Distance
+    \item Quartet Distance
+  \end{enumerate}
+\end{enumerate}
+* indicates that item is still in progress. \\
+X indicates that no branch lengths are produced using this methodology.\bigskip
+
+In total, we have 12 tree reconstruction methods (8 of which produce branch lengths)
+and 2 comparison methods.
+
+\section*{Randomly Generated Data}
+Our random data generator is capable of producing testing examples $\langle T, D \rangle$ where
+$T$ is a randomly generated phylogenetic tree containing $n$ species, and $D$ is a set of $n$ 
+sequences generated based on that synthetic tree. We can use $D$ as input to our 12 tree
+reconstruction algorithms, which will each output some tree $T'$. We can then use our two comparison
+functions to evaluate the relative distance between the true tree $T$ and the tree we produced
+$T'$.\bigskip
+
+\subsection*{Experiments}
+\begin{enumerate}
+  \item 20 test examples $\{\langle T, D \rangle\}$ with 5 species, around 50 base pairs.
+  \item 20 test examples $\{\langle T, D \rangle\}$ with 20 species, around 50 base pairs.
+  \item 20 test examples $\{\langle T, D \rangle\}$ with 50 species, around 50 base pairs.
+  \item 20 test examples $\{\langle T, D \rangle\}$ with 5 species, around 500 base pairs.
+  \item 20 test examples $\{\langle T, D \rangle\}$ with 20 species, around 500 base pairs.
+  \item 20 test examples $\{\langle T, D \rangle\}$ with 50 species, around 500 base pairs.
+  \item 20 test examples $\{\langle T, D \rangle\}$ with 5 species, around 1500 base pairs.
+  \item 20 test examples $\{\langle T, D \rangle\}$ with 20 species, around 1500 base pairs.
+  \item 20 test examples $\{\langle T, D \rangle\}$ with 50 species, around 1500 base pairs.
+\end{enumerate}
+
+For each of these 9 experiments, we will be able to produce confidence intervals for how
+accurate the reconstructed trees are for all methods, given our two distance metrics
+(pairwise distance will be used to compare the 8 methods that produce branch lengths,
+quartet distance will be used to compare the 12 methods that produce topologies).
+
+We will also record the average runtime of each algorithm.
+
+\section*{Real World Data}
+We have a dataset $\langle T, D \rangle$ where $T$ is the commonly accepted phylogeny
+for 53 apes, and $D$ are the COX1 gemonic sequences of those apes. We can use $D$ as input
+to our 12 tree reconstruction algorithms, which will each output some tree $T'$. We can then use
+our two comparison functions to evaluate the relative distance between the true tree $T$ and
+the tree we produced $T'$. To test different numbers of species in our tree, we can
+select random subsets of the 53 apes for our tree builders to analyze.
+
+\subsection*{Experiment1}
+\begin{enumerate}
+  \item 20 test examples $\{\langle T, D \rangle\}$ with 5 randomly chosen apes.
+  \item 20 test examples $\{\langle T, D \rangle\}$ with 20 randomly chosen apes.
+  \item 20 test examples $\{\langle T, D \rangle\}$ with 50 randomly chosen apes.
+\end{enumerate}
+
+For each of these 3 experiments, we will be able to produce confidence intervals for how
+accurate the reconstructed trees are for all methods, given our two distance metrics
+(pairwise distance will be used to compare the 8 methods that produce branch lengths,
+quartet distance will be used to compare the 12 methods that produce topologies). We can
+then compare our test/real data results, to see...
+\begin{enumerate}
+  \item if our random data results match the real results
+  \item if our random model of evolution was too simple
+  \item which algorithm performs best on real data
+\end{enumerate}
+
+\subsection*{Experiment2}
+We have the nucleotide sequence data of the COX1-3, ND1-5 genes of the 53 apes. We can run 
+the best performing reconstruction algorithm on each gene, and see how much resulting trees 
+variate depending  on which gene you choose to run the algorithm on.
+\begin{enumerate}
+  \item Randomly choose 20 apes from the dataset (may be 10 if it takes too long).
+  \item Run the best reconstruction algorithm on all mtDNA genes (COX1, COX2, COX3, ND1, ND2, ND3, ND4, ND4L, ND5, ATP6, ATP8, CYTB)
+  \item See how much the resulting tree variates. 
+\end{enumerate}
+
+We might be able to conclude that phylogentic reconstruction on single gene does not reliably produce an accurate phylogenetic tree. I am also interseted to compare the difference between mtDNA and nuclear DNA
+if we have time to do so. 
+
+\end{document}
